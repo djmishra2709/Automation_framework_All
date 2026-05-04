@@ -1,0 +1,5 @@
+core\BaseTest.class
+core\ConfigReader.class
+core\ApiBase.class
+core\MobileBase.class
+core\DriverManager.class
