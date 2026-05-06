@@ -1,15 +1,18 @@
 package stepdefinitions;
 
+import core.DriverManager;
 import io.cucumber.java.en.Given;
+import org.openqa.selenium.WebDriver;
 import Ui.pages.GooglePage;
 
 public class SmokeSteps {
 
-    GooglePage googlePage = new GooglePage();
-
     @Given("framework is initialized")
     public void init() {
+        WebDriver driver = DriverManager.getDriver();
+        GooglePage googlePage = new GooglePage(driver);
+
         googlePage.openGoogle();
-        System.out.println("Opened Google via Page Object");
+        System.out.println("Opened Google using DI");
     }
 }
