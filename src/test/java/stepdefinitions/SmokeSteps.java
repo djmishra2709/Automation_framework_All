@@ -9,10 +9,11 @@ public class SmokeSteps {
 
     @Given("framework is initialized")
     public void init() {
+
         WebDriver driver = DriverManager.getDriver();
         GooglePage googlePage = new GooglePage(driver);
-
         googlePage.openGoogle();
-        System.out.println("Opened Google using DI");
+        googlePage.enterSearchText("Selenium 4");
+
     }
 }
