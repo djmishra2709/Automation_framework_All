@@ -16,7 +16,7 @@ public class GooglePage extends BasePage {
     // =========================
 
     private final By searchBox = By.name("q");
-
+    private final By googleSearchButton = By.name("btnK");
     // =========================
     // Constructor
     // =========================
@@ -37,5 +37,11 @@ public class GooglePage extends BasePage {
     public void enterSearchText(String text) {
         logger.info("Entering search text: {}", text);
         actions.type(searchBox, text);
+    }
+
+    public void clickSearch() {
+
+        logger.info("Clicking Google Search button");
+        actions.click(googleSearchButton);
     }
 }

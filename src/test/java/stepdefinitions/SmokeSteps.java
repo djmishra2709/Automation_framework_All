@@ -14,6 +14,7 @@ public class SmokeSteps {
         GooglePage googlePage = new GooglePage(driver);
         googlePage.openGoogle();
         googlePage.enterSearchText("Selenium 4");
-
+        googlePage.clickSearch();
     }
+
 }
