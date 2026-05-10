@@ -1,6 +1,6 @@
 package Ui.pages;
 
-import core.ConfigReader;
+import utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.apache.logging.log4j.Logger;

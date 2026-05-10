@@ -2,6 +2,7 @@ package core;
 
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import utils.ConfigReader;
 import utils.LoggerUtils;
 public class DriverManager {
 
