@@ -22,15 +22,77 @@ public class ActionUtils {
     }
 
     public void click(By locator) {
-        waitUtils.waitForClickable(locator).click();
+
+        try {
+
+            logger.info("Clicking on element: {}", locator);
+
+            waitUtils.waitForClickable(locator)
+                    .click();
+
+        } catch (Exception e) {
+
+            logger.error(
+                    "Failed to click element: {}",
+                    locator,
+                    e
+            );
+
+            throw new RuntimeException(
+                    "Click action failed for locator: " + locator
+            );
+        }
     }
 
     public void type(By locator, String text) {
-        waitUtils.waitForVisibility(locator).sendKeys(text);
+
+        try {
+
+            logger.info(
+                    "Typing text '{}' into element: {}",
+                    text,
+                    locator
+            );
+
+            waitUtils.waitForVisibility(locator)
+                    .sendKeys(text);
+
+        } catch (Exception e) {
+
+            logger.error(
+                    "Failed to type into element: {}",
+                    locator,
+                    e
+            );
+
+            throw new RuntimeException(
+                    "Type action failed for locator: " + locator
+            );
+        }
     }
 
     public String getText(By locator) {
-        return waitUtils.fluentWaitForVisibility(locator).getText();
+
+        try {
+
+            logger.info("Fetching text from element: {}", locator);
+
+            return waitUtils
+                    .fluentWaitForVisibility(locator)
+                    .getText();
+
+        } catch (Exception e) {
+
+            logger.error(
+                    "Failed to fetch text from element: {}",
+                    locator,
+                    e
+            );
+
+            throw new RuntimeException(
+                    "GetText action failed for locator: " + locator
+            );
+        }
     }
 
     public boolean isDisplayed(By locator) {
@@ -67,7 +129,20 @@ public class ActionUtils {
 
     public String getTitle() {
 
-        return driver.getTitle();
+        try {
+
+            logger.info("Fetching page title");
+
+            return driver.getTitle();
+
+        } catch (Exception e) {
+
+            logger.error("Failed to fetch title", e);
+
+            throw new RuntimeException(
+                    "Unable to fetch page title"
+            );
+        }
     }
 
     public String getCurrentUrl() {

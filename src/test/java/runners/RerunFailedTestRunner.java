@@ -4,18 +4,17 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features = "src/test/resources/features",
+        features = "@target/failed_scenarios.txt",
         glue = {
                 "stepdefinitions",
                 "hooks"
         },
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports.html",
-                "rerun:target/failed_scenarios.txt"
+                "html:target/rerun-cucumber-report.html"
         },
         monochrome = true
 )
-public class TestRunner
+public class RerunFailedTestRunner
         extends AbstractTestNGCucumberTests {
 }
