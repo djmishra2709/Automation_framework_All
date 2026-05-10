@@ -44,4 +44,20 @@ public class GooglePage extends BasePage {
         logger.info("Clicking Google Search button");
         actions.click(googleSearchButton);
     }
+    public boolean isSearchBoxDisplayed() {
+
+        logger.info("Checking if search box is displayed");
+        return actions.isDisplayed(searchBox);
+    }
+
+    public boolean isSearchButtonEnabled() {
+
+        logger.info("Checking if search button is enabled");
+        return actions.isEnabled(googleSearchButton);
+    }
+    public String fetchPageTitle() {
+
+        logger.info("Fetching page title");
+        return actions.getTitle();
+    }
 }
