@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Automation Suite">
-    <test name="MainExecution">
+<suite name="AutomationSuite"  parallel="tests"  thread-count="2">
+    <test name="CucumberTests">
         <classes>
             <class name="runners.TestRunner"/>
         </classes>

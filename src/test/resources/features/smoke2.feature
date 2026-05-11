@@ -1,4 +1,8 @@
 Feature: Smoke Test
 
-  Scenario: Framework validation 2
+  @smoke
+  Scenario: Framework validation 3
+    Given framework is initialized
+
+  Scenario: Framework validation 4
     Given framework is initialized
