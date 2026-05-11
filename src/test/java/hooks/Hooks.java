@@ -2,16 +2,14 @@ package hooks;
 
 import com.aventstack.extentreports.ExtentTest;
 import core.DriverManager;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.ConfigReader;
 import utils.ExtentManager;
 import utils.ReportManager;
 import utils.ScreenshotUtils;
-
+import core.GridManager;
 public class Hooks {
 
     private static final Logger logger =
@@ -20,7 +18,20 @@ public class Hooks {
     // Thread-safe feature node
     private static final ThreadLocal<ExtentTest>
             featureNode = new ThreadLocal<>();
+    @BeforeAll
+    public static void beforeAll() {
 
+        String executionType =
+                ConfigReader.get(
+                        "execution.type"
+                );
+
+        if (executionType.equalsIgnoreCase(
+                "remote")) {
+
+            GridManager.startGrid();
+        }
+    }
     @Before
     public void setUp(Scenario scenario) {
 
@@ -32,8 +43,7 @@ public class Hooks {
         // Initialize browser
         DriverManager.initDriver();
         // Launch application
-        DriverManager.getDriver().get(ConfigReader.get("url")
-        );
+        DriverManager.getDriver().get(ConfigReader.get("url"));
 
         /*
          * Extract feature file name
@@ -130,6 +140,21 @@ public class Hooks {
             logger.info(
                     "========== DRIVER CLOSED =========="
             );
+        }
+    }
+
+    @AfterAll
+    public static void afterAll() {
+
+        String executionType =
+                ConfigReader.get(
+                        "execution.type"
+                );
+
+        if (executionType.equalsIgnoreCase(
+                "remote")) {
+
+            GridManager.stopGrid();
         }
     }
 }
