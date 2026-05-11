@@ -54,16 +54,14 @@ public class BrowserFactory {
 
                         case "chrome":
 
-                            WebDriverManager
-                                    .chromedriver()
-                                    .setup();
+                            WebDriverManager.chromedriver().setup();
 
-                            ChromeOptions chromeOptions = new ChromeOptions();
-                            // Selenium 4 recommended
-                            chromeOptions.addArguments("--headless=new");
-                            chromeOptions.addArguments( "--window-size=1920,1080");
+                            ChromeOptions options = new ChromeOptions();
+                            options.addArguments("--headless=new");   // 🔷 Selenium 4 update
+                            options.addArguments("--disable-gpu");
+                            options.addArguments("--window-size=1920,1080");
 
-                            return new ChromeDriver(chromeOptions);
+                            return new ChromeDriver(options);
 
                         case "firefox":
 

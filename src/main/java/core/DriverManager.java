@@ -21,7 +21,15 @@ public class DriverManager {
 
     public static WebDriver getDriver()
     {
-        return driverThreadLocal.get();
+        WebDriver driver = driverThreadLocal.get();
+
+        if (driver == null) {
+            throw new RuntimeException(
+                    "Driver not initialized for this thread"
+            );
+        }
+
+        return driver;
     }
 
     public static void quitDriver()
