@@ -88,10 +88,7 @@ public class Hooks {
 
             if (scenario.isFailed()) {
 
-                logger.error(
-                        "========== TEST FAILED: {} ==========",
-                        scenario.getName()
-                );
+                logger.error("========== TEST FAILED: {} ==========",scenario.getName());
 
                 String screenshotPath =
                         ScreenshotUtils.captureScreenshot(
@@ -99,9 +96,7 @@ public class Hooks {
                                         .replaceAll(" ", "_")
                         );
 
-                ExtentManager.getTest().fail(
-                        "Scenario Failed"
-                );
+                ExtentManager.getTest().fail("Scenario Failed");
 
                 ExtentManager.getTest()
                         .addScreenCaptureFromPath(

@@ -1,8 +1,7 @@
 package api.base;
 
-import io.restassured.RestAssured;
+import api.spec.RequestSpecFactory;
 import io.restassured.specification.RequestSpecification;
-import utils.ConfigReader;
 
 public class ApiBase {
 
@@ -10,11 +9,8 @@ public class ApiBase {
 
     public static void init() {
 
-        RestAssured.baseURI = ConfigReader.get("base.url");
-
-        request = RestAssured
-                .given()
-                .header("Content-Type", "application/json")
-                .log().all();
+        request =
+                RequestSpecFactory
+                        .getRequestSpec();
     }
 }

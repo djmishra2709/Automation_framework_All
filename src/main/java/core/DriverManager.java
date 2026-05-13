@@ -10,8 +10,7 @@ public class DriverManager {
     // Thread-safe WebDriver storage
     private static final ThreadLocal<WebDriver>  driverThreadLocal = new ThreadLocal<>();
     private static final Logger logger =  LoggerUtils.getLogger(DriverManager.class);
-    public static void initDriver()
-    {
+    public static void initDriver()    {
         String browser =  ConfigReader.get("browser");
         WebDriver driver =  BrowserFactory.createDriver(browser);
         // Store driver per thread
@@ -19,21 +18,18 @@ public class DriverManager {
         logger.info("Launching browser: {}", browser );
     }
 
-    public static WebDriver getDriver()
-    {
+    public static WebDriver getDriver()    {
         WebDriver driver = driverThreadLocal.get();
 
         if (driver == null) {
-            throw new RuntimeException(
-                    "Driver not initialized for this thread"
+            throw new RuntimeException( "Driver not initialized for this thread"
             );
         }
 
         return driver;
     }
 
-    public static void quitDriver()
-    {
+    public static void quitDriver()    {
         if (getDriver() != null)
         {
             getDriver().quit();

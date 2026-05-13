@@ -2,7 +2,6 @@ package api.client;
 
 import api.base.ApiBase;
 import io.restassured.response.Response;
-
 import static io.restassured.RestAssured.given;
 
 public class RestClient extends ApiBase {
@@ -14,7 +13,18 @@ public class RestClient extends ApiBase {
                 .when()
                 .get(endpoint)
                 .then()
-                .log().all()
+                .extract()
+                .response();
+    }
+
+    public static Response post( String endpoint, Object payload) {
+
+        return given()
+                .spec(request)
+                .body(payload)
+                .when()
+                .post(endpoint)
+                .then()
                 .extract()
                 .response();
     }

@@ -8,14 +8,13 @@ import utils.LoggerUtils;
 
 public class GooglePage extends BasePage {
 
-    private static final Logger logger =
-            LoggerUtils.getLogger(GooglePage.class);
+    private static final Logger logger =   LoggerUtils.getLogger(GooglePage.class);
 
     // =========================
     // Locators
     // =========================
 
-    private final By searchBox = By.name("q");
+    private final By searchBox = By.name("q1");
     private final By googleSearchButton = By.name("btnK");
     // =========================
     // Constructor

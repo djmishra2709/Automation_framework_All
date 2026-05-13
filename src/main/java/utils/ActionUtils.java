@@ -7,8 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class ActionUtils {
 
-    private static final Logger logger =
-            LoggerUtils.getLogger(ActionUtils.class);
+    private static final Logger logger = LoggerUtils.getLogger(ActionUtils.class);
     private final WebDriver driver;
     private final WaitUtils waitUtils;
     public ActionUtils(WebDriver driver) {

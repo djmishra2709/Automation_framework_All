@@ -65,27 +65,15 @@ public class BrowserFactory {
 
                         case "firefox":
 
-                            WebDriverManager
-                                    .firefoxdriver()
-                                    .setup();
+                            WebDriverManager.firefoxdriver().setup();
 
-                            FirefoxOptions firefoxOptions =
-                                    new FirefoxOptions();
-
-                            firefoxOptions.addArguments(
-                                    "--headless"
-                            );
-
-                            return new FirefoxDriver(
-                                    firefoxOptions
-                            );
+                            FirefoxOptions firefoxOptions = new FirefoxOptions();
+                            firefoxOptions.addArguments( "--headless" );
+                            return new FirefoxDriver(  firefoxOptions );
 
                         default:
 
-                            throw new RuntimeException(
-                                    "Invalid browser: "
-                                            + browser
-                            );
+                            throw new RuntimeException(  "Invalid browser: " + browser);
                     }
 
                     // =========================

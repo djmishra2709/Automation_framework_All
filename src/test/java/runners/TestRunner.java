@@ -16,7 +16,7 @@ import org.testng.annotations.DataProvider;
                 "rerun:target/failed_scenarios.txt"
         },
         monochrome = true,
-        tags = "@api"
+        tags = "@apipost"
 )
 public class TestRunner  extends AbstractTestNGCucumberTests {
         @Override
