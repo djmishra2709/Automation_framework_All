@@ -30,4 +30,16 @@ public class RequestSpecFactory {
 
         return builder.build();
     }
+
+    public static RequestSpecification getAuthRequestSpec() {
+
+        return new RequestSpecBuilder()
+                .setBaseUri("https://reqres.in/api")
+                .setContentType("application/json")
+
+                // if your API requires key (as per your earlier error)
+                .addHeader("x-api-key", "free_user_3DjqK4ZPykCT6flb8oMEfnPJTHR")
+
+                .build();
+    }
 }

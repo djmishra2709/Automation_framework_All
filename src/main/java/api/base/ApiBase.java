@@ -9,8 +9,14 @@ public class ApiBase {
 
     public static void init() {
 
-        request =
-                RequestSpecFactory
-                        .getRequestSpec();
+        request = RequestSpecFactory.getRequestSpec();
+    }
+    public static void initAuth() {
+
+        request = RequestSpecFactory.getAuthRequestSpec();
+    }
+
+    public static RequestSpecification getRequest() {
+        return request;
     }
 }

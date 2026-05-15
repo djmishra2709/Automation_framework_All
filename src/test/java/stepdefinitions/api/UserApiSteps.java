@@ -28,24 +28,26 @@ public class UserApiSteps {
     }
 
     @When("I send GET request for user id {int}")
-    public void get_user(int id) {
+    public void get_user(int id)
+    {
         response = userService.getUser(id);
     }
 
     @Then("I should receive status code {int}")
-    public void validate_status(int statusCode) {
+    public void validate_status(int statusCode)
+    {
         StatusCodeValidator.validateStatusCode(response.getStatusCode(),statusCode);
     }
 
     @When("I create user with name {string} and job {string}")
-    public void create_user(String name,String job) {
-
+    public void create_user(String name,String job)
+    {
         User user = new User(name, job);
         response = userService.createUser(user);
     }
     @Then("I validate response contains name {string}")
-    public void validate_name(String expectedName) {
-
+    public void validate_name(String expectedName)
+    {
         UserResponse userResponse = response.as(UserResponse.class);
         ResponseValidator.validateEquals( userResponse.getName(),expectedName,"Name validation failed");
     }

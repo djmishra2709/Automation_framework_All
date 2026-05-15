@@ -1,18 +1,44 @@
 package api.services;
 
 import api.auth.TokenManager;
+import api.base.ApiBase;
+import api.pojo.AuthRequest;
+import api.pojo.AuthResponse;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.given;
 
 public class AuthService {
 
-    public void generateToken() {
+    AuthRequest request =
+            new AuthRequest(
+                    "eve.holt@reqres.in",
+                    "cityslicka"
+            );
+    public Response generateToken() {
 
-        /*
-         * Simulated token generation
-         * Later we will call real auth API
-         */
+        Response response =
+                given()
+                        .spec(ApiBase.getRequest())
+                        .body(request)
+                        .when()
+                        .post("/login");
 
-        String fakeToken ="sample-enterprise-token";
+        if (response.getStatusCode() == 200) {
+            System.out.println("Good");
+        }
 
-        TokenManager.setToken(fakeToken);
+        System.out.println("response id ==="+response.asString());
+
+        AuthResponse authResponse =
+                response.then()
+                        .extract()
+                        .as(AuthResponse.class);
+
+        System.out.println("Token from POJO: " + authResponse.getToken());
+
+        TokenManager.setToken(authResponse.getToken());
+
+        return response;
     }
 }
