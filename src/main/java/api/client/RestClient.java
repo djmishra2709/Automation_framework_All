@@ -1,9 +1,10 @@
 package api.client;
 
+import api.auth.TokenManager;
 import api.base.ApiBase;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
-
+import io.restassured.specification.RequestSpecification;
 public class RestClient extends ApiBase {
 
     public static Response get(String endpoint) {
@@ -28,4 +29,17 @@ public class RestClient extends ApiBase {
                 .extract()
                 .response();
     }
+
+    private static RequestSpecification attachOAuthToken( RequestSpecification request)
+    {
+
+        String token = TokenManager.getToken();
+
+        if (token != null && !token.isEmpty()) {
+            request.header("Authorization", "Bearer " + token);
+        }
+
+        return request;
+    }
+
 }
