@@ -1,4 +1,4 @@
-package stepdefinitions.auth;
+package stepdefinitions.api;
 
 import api.services.OAuthService;
 import api.client.RestClient;
@@ -26,7 +26,7 @@ public class OAuthSteps {
     // STEP 2: CALL USER API
     // =========================
     @When("I get user with id {int}")
-    public void get_user(int id) {
+    public void get_oauth_user(int id) {
 
         response = RestClient.get("/users/" + id);
     }
@@ -35,13 +35,9 @@ public class OAuthSteps {
     // STEP 3: VALIDATE STATUS
     // =========================
     @Then("OAuth should receive status code {int}")
-    public void validate_status(int expectedStatus) {
+    public void validate_Oauth_status(int expectedStatus) {
 
-        Assert.assertEquals(
-                response.getStatusCode(),
-                expectedStatus,
-                "Status code mismatch"
-        );
+        Assert.assertEquals( response.getStatusCode(), expectedStatus,"Status code mismatch" );
     }
 
     // =========================
@@ -50,9 +46,6 @@ public class OAuthSteps {
     @Then("I should have a valid access token")
     public void validate_token_exists() {
 
-        Assert.assertTrue(
-                api.auth.oauth.OAuthTokenProvider.getToken() != null,
-                "Token should exist"
-        );
+        Assert.assertTrue(api.auth.oauth.OAuthTokenProvider.getToken() != null,"Token should exist");
     }
 }
